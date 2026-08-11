@@ -1,5 +1,6 @@
 pipeline {
-    any agent
+
+    agent any
 
     stages {
         stage('Checkout') {
@@ -24,7 +25,7 @@ pipeline {
 
     post {
     
-        Success {
+        success {
             echo 'Pipeline Complited Successfully'
         }
 
