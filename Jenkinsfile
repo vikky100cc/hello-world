@@ -8,7 +8,7 @@ pipeline {
 
             steps {
 
-                sh 'git breanch --show-current || true'
+                sh 'git branch --show-current || true'
                 sh 'git log --oneline || true'
                 sh 'pwd'
                 sh 'ls -la'
