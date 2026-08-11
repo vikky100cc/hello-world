@@ -7,11 +7,13 @@ pipeline {
         stage('Checkout Info') {
 
             steps {
-
+               
+                echo '=============================='
                 sh 'git branch --show-current || true'
                 sh 'git log --oneline || true'
                 sh 'pwd'
                 sh 'ls -la'
+                ehco '=============================='
             }
 
         }    
@@ -20,8 +22,10 @@ pipeline {
         stage('Build') {
 
             steps {
-          
+
+                echo '=============================='          
                 echo 'Build stage'
+                echo '=============================='            
 
             }
 
@@ -31,7 +35,10 @@ pipeline {
 
             steps {
 
+                echo '=============================='
                 echo 'Test stage' 
+                echo '=============================='
+
             }
 
         }
