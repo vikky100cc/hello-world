@@ -1,79 +1,37 @@
 pipeline {
-    agent any
+    any agent
 
-    environment {
-        APP_NAME = 'my-app'
-    }
-
-    options {
-        timestamps()
-        timeout(time: 30, unit: 'MINUTES')
-    }
-
-    parameters {
-        choice(
-            name: 'ENV',
-            choices: ['dev', 'qa', 'prod'],
-            description: 'Choose the Environment'
-        )
-    }
-    
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Pipeline Build for system info'
-                sh 'hostname'
-                sh 'whoami'
-                sh 'pwd'
-                sh 'echo $APP_NAME'
-                echo "Selected Environment: ${params.ENV}"
+                echo 'Checkout the Git Source Code'
             }
+       }
+
+       stage('Build') {
+           steps {
+               echo 'Build By Using Maven'
+           }
+       }
+
+       stage('Test') {
+           steps {
+               echo 'Running Test using junit'
+           }
+       }
+
+    }
+
+    post {
+    
+        Success {
+            echo 'Pipeline Complited Successfully'
         }
-        
-        stage('Test') {
-            steps {
-                script {
-                    def status = sh(
-                        script: 'date',
-                        returnStatus: true
-                    )
 
-                    echo "Exit code: ${status}"
-
-                }
-
-            }
- 
+        failure {
+            ehco 'Pipline Failed'
+         
         }
-
-        stage('Production') {
-            when {
-                branch 'main'
-            }
-
-            steps {
-                echo 'Production Deployment'
-            }
-        }
-    }
-}
-
-post {
-
-    always {
-        echo 'Always Excuted'
-    }
-
-    success {
-        echo 'Build Success'
-    }
-
-    failed {
-        echo 'Build Failed'
-    }
-
-    aborted {
-        echo 'Build Aborted'
     }
 
 }
