@@ -24,7 +24,7 @@ pipeline {
             steps {
 
                 echo '=============================='          
-                echo 'Build stage'
+                echo 'Build stage version 2'
                 echo '=============================='            
 
             }
