@@ -13,7 +13,7 @@ pipeline {
                 sh 'git log --oneline || true'
                 sh 'pwd'
                 sh 'ls -la'
-                ehco '=============================='
+                echo '=============================='
             }
 
         }    
