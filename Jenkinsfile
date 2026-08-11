@@ -3,36 +3,54 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+ 
+        stage('Checkout Info') {
+
             steps {
-                echo 'Checkout the Git Source Code'
+
+                sh 'git breanch --show-current || true'
+                sh 'git log --oneline || true'
+                sh 'pwd'
+                sh 'ls -la'
             }
-       }
 
-       stage('Build') {
-           steps {
-               echo 'Build By Using Maven'
-           }
-       }
+        }    
 
-       stage('Test') {
-           steps {
-               echo 'Running Test using junit'
-           }
-       }
+
+        stage('Build') {
+
+            steps {
+          
+                echo 'Build stage'
+
+            }
+
+        }
+ 
+        stage('Test') {
+
+            steps {
+
+                sh 'Test stage' 
+            }
+
+        }
 
     }
 
     post {
-    
+
         success {
-            echo 'Pipeline Complited Successfully'
+
+            echo 'CI pipeine is successful'
         }
 
         failure {
-            ehco 'Pipline Failed'
-         
+            
+            echo 'CI pipeline failed'
+
         }
-    }
+
+    } 
 
 }
