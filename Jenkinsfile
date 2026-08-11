@@ -9,6 +9,7 @@ pipeline {
             steps {
                
                 echo '=============================='
+                echo 'Webhook triggered by this build'
                 sh 'git branch --show-current || true'
                 sh 'git log --oneline || true'
                 sh 'pwd'
